@@ -6,6 +6,11 @@ This is a minimalistic webserver to serve static files from a given directory on
 
 Since it is just a small Node.js file, it can also be easily extended to mockup a dynamic backend with webservices and template engines if needed.
 
+## Install
+1. Clone this project
+2. Do `npm install` in the project folder to pull down the dependencies.
+3. DONE!
+
 ## Example Usage
 This line will serve files from the given directory on http://localhost:8080
 

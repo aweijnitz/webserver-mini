@@ -16,8 +16,13 @@ This line will serve files from the given directory on http://localhost:8080
 
 `node server.js ../../myProject/testdata 8080`
 
+Verify that CORS headers are being served
+
+`curl http://localhost:8080/four-oh-four-me-please --include --silent -H 'User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; de) Opera 11.01' -H 'Origin: ht$
+ $tp://example.com' -H 'X-Requested-With: curl' -H 'X-Method-Override: GET'`
+
+
 ## License
-Go ahead and use as you like. :-)
 
 **This software is provided under the MIT license as per below.**
 

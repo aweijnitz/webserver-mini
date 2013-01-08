@@ -36,23 +36,25 @@ var options = {
 // Setup proxy to listen on defined port and
 // - Forward /db calls to CouchDB
 // - Everything else goes to the Connect server on port+1
-var couchDBEndpoint = '127.0.0.1:5984';
-var proxyRules = {
-    router: {
-        '/': '127.0.0.1:'+(port+1),
-        '/db': couchDBEndpoint
-//        'bar.com/buz': '127.0.0.1:8003'
-    }
-};
-
-
-var proxyServer = httpProxy.createServer(proxyRules);
-proxyServer.listen(port);
+endpoint  = {
+      host:   '127.0.0.1', // or IP address
+      port:   5984,
+      prefix: '/content'
+    };
+var proxy = new httpProxy.RoutingProxy();
 
 var app = connect(CORS(options))
   .use(connect.logger('dev'))
+  .use(function(req, res, next) {
+    if (req.url.indexOf(endpoint.prefix) == 0) {
+      proxy.proxyRequest(req, res, endpoint);
+      return;
+    }
+    return next();
+  })
   .use(connect.static(dir))
   .use(connect.directory(dir))
- .listen(port+1);
+ .listen(port);
 
 console.log('Serving from ' + green + dir + reset +' on ' + green + 'http://localhost:' + port + reset);
+console.log('Forwarding '+ green +'localhost:'+port+'/content '+ reset + 'to ' + green + '127.0.0.1:5984' + reset);

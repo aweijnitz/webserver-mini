@@ -1,4 +1,6 @@
-var connect = require('connect');
+var connect = require('connect'),
+    CORS = require('connect-cors')
+    ;
 
 var dir = __dirname;
 var port = 8080;
@@ -12,7 +14,25 @@ if(process.argv.length >= 3)
 if(process.argv.length >= 4)
 	port = process.argv[3];
 
-var app = connect()
+// CORS options ("allow all")
+var options = {
+    origins: []                       // implicit same as ['*'], and null
+    , methods: ['HEAD', 'GET', 'POST']  // OPTIONS is always allowed
+    , headers: [                        // both `Exposed` and `Allowed` headers
+        'X-Requested-With'
+        , 'X-HTTP-Method-Override'
+        , 'Content-Type'
+        , 'Accept'
+    ]
+    , credentials: false                // don't allow Credentials
+    , resources: [
+        {
+            pattern: '/'                // a string prefix or RegExp
+        }
+    ]
+};
+
+var app = connect(CORS(options))
   .use(connect.logger('dev'))
   .use(connect.static(dir))
   .use(connect.directory(dir))

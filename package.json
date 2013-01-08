@@ -6,7 +6,8 @@
 	"description": "Minimal webserver for serving static files from a dir given on the command line.",
 	"dependencies": {
 	  "connect": "2.5.0",
-      "connect-cors": "0.5.0"
+      "connect-cors": "0.5.0",
+      "http-proxy": "0.8.x"
 	},
     "license": "MIT"
 }

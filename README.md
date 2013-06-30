@@ -16,8 +16,8 @@ This line will serve files from the given directory on http://localhost:8080
 
 `node server.js ../../myProject/testdata 8080`
 
+
 ## License
-Go ahead and use as you like. :-)
 
 **This software is provided under the MIT license as per below.**
 

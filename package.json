@@ -1,8 +1,11 @@
 {
 	"name": "simple-server",
-	"version": "1.0.0",
+    "preferGlobal": "true",
+	"version": "1.1.0",
+    "author": "Anders Weijnitz <anders.weijnitz@gmail.com>",
 	"description": "Minimal webserver for serving static files from a dir given on the command line.",
 	"dependencies": {
 	  "connect": "2.5.0"
-	}
+	},
+    "license": "MIT"
 }

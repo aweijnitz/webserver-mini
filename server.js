@@ -1,4 +1,4 @@
-var config = require('../config.json');
+var config = require('./config.json');
 var connect = require('connect');
 
 var green  = '\033[32m';
@@ -15,6 +15,7 @@ if(process.argv.length >= 3)
 
 if(process.argv.length >= 4)
 	port = process.argv[3];
+
 
 var app = connect()
   .use(connect.logger('dev'))
